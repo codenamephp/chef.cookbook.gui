@@ -1,0 +1,1 @@
+default['chef.cookbook.gui']['cinnamon']['package_name'] = 'cinnamon-core'

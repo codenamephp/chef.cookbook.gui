@@ -1,4 +1,42 @@
-# chef.cookbook.gui
+# Chef Cookbook Gui
 
-TODO: Enter the cookbook description here.
+Cookbook to install linux guis like cinnamon, gnome, ...
 
+The default cookbook is a No-Op. To install a gui, add the respective cookbook to your runlist.
+
+## Requirements
+
+### Supported Platforms
+
+- Debian Stretch
+
+### Chef
+
+- Chef 13.0+
+
+### Cookbook Depdendencies
+
+- resolver
+
+## Usage
+
+Add the cookbook to your Berksfile:
+
+```ruby
+cookbook 'chef.cookbook.gui', :github 'codenamephp/chef.cookbook.gui'
+```
+
+Add the gui cookbook to your runlist, e.g. in a role:
+
+```json
+{
+  "name": "default",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "run_list": [
+	  "recipe[chef.cookbook.gui::cinnamon]"
+  ]
+}
+```
+
+Note that the default recipe is a No-Op, so you need to add the gui you want
