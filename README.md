@@ -46,7 +46,7 @@ Note that the default recipe is a No-Op, so you need to add the gui you want
 #### Cinnamon
 
 - `['chef.cookbook.gui']['cinnamon']['package_name']` - The package name that is used 
-  to install cinnamon, defaults to 'cinnamon-core' to install the minimal version of cinnamon
+  to install cinnamon, defaults to `'cinnamon-core'` to install the minimal version of cinnamon
   
 ## Supported GUIs
 
