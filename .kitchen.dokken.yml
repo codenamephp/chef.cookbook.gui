@@ -14,8 +14,4 @@ platforms:
   - name: debian-9
     driver:
       image: dokken/debian-9
-      privileged: true
       pid_one_command: /bin/systemd
-      intermediate_instructions:
-      - RUN export DEBIAN_FRONTEND noninteractive
-
