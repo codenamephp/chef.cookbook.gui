@@ -1,9 +1,0 @@
-DEPENDENCIES
-  codenamephp_gui
-    path: .
-    metadata: true
-
-GRAPH
-  apt (7.0.0)
-  codenamephp_gui (1.0.0)
-    apt (>= 0.0.0)
