@@ -9,13 +9,20 @@ verifier:
   name: inspec
 
 platforms:
-  - name: debian-9.1
+  - name: debian-9.3
 
 suites:
   - name: cinnamon
     run_list:
-      - recipe[chef.cookbook.gui::cinnamon]
+      - recipe[codenamephp_gui::cinnamon]
     verifier:
       inspec_tests:
-        - test/smoke/default
+        - test/smoke/cinnamon
+    attributes:
+  - name: xfce
+    run_list:
+      - recipe[codenamephp_gui::xfce]
+    verifier:
+      inspec_tests:
+        - test/smoke/xfce
     attributes:

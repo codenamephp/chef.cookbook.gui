@@ -1,0 +1,17 @@
+driver:
+  name: dokken
+  privileged: true # because Docker and SystemD/Upstart
+  chef_version: current
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+  deprecations_as_errors: true
+ 
+platforms:
+  - name: debian-9
+    driver:
+      image: dokken/debian-9
+      pid_one_command: /bin/systemd

@@ -1,0 +1,7 @@
+{
+  "chef": {
+    "chef_server_url": "https://api.chef.io/organizations/codenamephp",
+    "client_key": "codenamephp.pem",
+    "node_name": "codenamephp"
+  }
+}
