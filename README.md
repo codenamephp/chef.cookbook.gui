@@ -23,7 +23,7 @@ The default cookbook is a No-Op. To install a gui, add the respective cookbook t
 Add the cookbook to your Berksfile:
 
 ```ruby
-cookbook 'chef.cookbook.gui', :github 'codenamephp/chef.cookbook.gui'
+cookbook 'codenamephp_gui'
 ```
 
 Add the gui cookbook to your runlist, e.g. in a role:
@@ -34,7 +34,7 @@ Add the gui cookbook to your runlist, e.g. in a role:
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
-	  "recipe[chef.cookbook.gui::cinnamon]"
+	  "recipe[codenamephp_gui::cinnamon]"
   ]
 }
 ```
@@ -45,7 +45,7 @@ Note that the default recipe is a No-Op, so you need to add the gui you want
 
 #### Cinnamon
 
-- `['chef.cookbook.gui']['cinnamon']['package_name']` - The package name that is used 
+- `['codenamephp_gui']['cinnamon']['package_name']` - The package name that is used 
   to install cinnamon, defaults to `'cinnamon-core'` to install the minimal version of cinnamon
   
 ## Supported GUIs
