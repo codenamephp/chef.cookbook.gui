@@ -16,3 +16,6 @@ platforms:
       image: dokken/debian-9
       privileged: true
       pid_one_command: /bin/systemd
+      intermediate_instructions:
+      - RUN EVN DEBIAN_FRONTEND noninteractive
+
