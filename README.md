@@ -1,4 +1,5 @@
 # Chef Cookbook Gui
+[![Build Status](https://travis-ci.org/codenamephp/chef.cookbook.gui.svg?branch=dev)](https://travis-ci.org/codenamephp/chef.cookbook.gui)
 
 Cookbook to install linux guis like cinnamon, gnome, ...
 
