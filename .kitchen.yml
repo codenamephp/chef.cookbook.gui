@@ -17,5 +17,12 @@ suites:
       - recipe[codenamephp_gui::cinnamon]
     verifier:
       inspec_tests:
-        - test/smoke/default
+        - test/smoke/cinnamon
+    attributes:
+  - name: xfce
+    run_list:
+      - recipe[codenamephp_gui::xfce]
+    verifier:
+      inspec_tests:
+        - test/smoke/xfce
     attributes:

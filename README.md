@@ -10,13 +10,17 @@ The default cookbook is a No-Op. To install a gui, add the respective cookbook t
 
 - Debian Stretch
 
+### Suported GUIs
+- cinnamon
+- xfce
+
 ### Chef
 
 - Chef 13.0+
 
 ### Cookbook Depdendencies
 
-- resolver
+- apt
 
 ## Usage
 
@@ -47,7 +51,8 @@ Note that the default recipe is a No-Op, so you need to add the gui you want
 
 - `['codenamephp_gui']['cinnamon']['package_name']` - The package name that is used 
   to install cinnamon, defaults to `'cinnamon-core'` to install the minimal version of cinnamon
-  
-## Supported GUIs
 
-- Cinnamon
+#### xfce
+
+- `['codenamephp_gui']['xfce']['package_name']` - The package name that is used 
+  to install xfce, defaults to `'xfce'` to install the minimal version of xfce
