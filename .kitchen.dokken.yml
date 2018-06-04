@@ -17,5 +17,5 @@ platforms:
       privileged: true
       pid_one_command: /bin/systemd
       intermediate_instructions:
-      - RUN EVN DEBIAN_FRONTEND noninteractive
+      - RUN ENV DEBIAN_FRONTEND noninteractive
 
