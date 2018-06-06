@@ -26,6 +26,7 @@ remote_directory '/etc/skel/xfce4' do
 end
 
 node['etc']['passwd'].each do |user, data|
+  next unless data['uid'].to_i >= 1000
   remote_directory "#{data['dir']}/.config/xfce4" do
     action :create_if_missing
     source 'xfce4'
