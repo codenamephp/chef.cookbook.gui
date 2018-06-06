@@ -62,8 +62,9 @@ describe 'codenamephp_gui::xfce' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new do |node|
         node.override['etc']['passwd'] = {
-          'user1' => { 'dir' => '/home/user1', 'gid' => 123 },
-          'user2' => { 'dir' => '/home/user2', 'gid' => 456 }
+          'user1' => { 'dir' => '/home/user1','uid' => 1000, 'gid' => 123 },
+          'user2' => { 'dir' => '/home/user2','uid' => 1001, 'gid' => 456 },
+          'user3' => { 'dir' => '/home/user2','uid' => 500, 'gid' => 789 }
         }
       end.converge(described_recipe)
     end
@@ -75,6 +76,7 @@ describe 'codenamephp_gui::xfce' do
     it 'copies the xfce folder to all user configs' do
       expect(chef_run).to create_remote_directory_if_missing('/home/user1/.config/xfce4').with(owner: 'user1', group: 123)
       expect(chef_run).to create_remote_directory_if_missing('/home/user2/.config/xfce4').with(owner: 'user2', group: 456)
+      expect(chef_run).to_not create_remote_directory_if_missing('/home/user3/.config/xfce4')
     end
   end
 end
