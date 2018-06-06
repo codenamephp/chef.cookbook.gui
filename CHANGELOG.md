@@ -1,10 +1,21 @@
 # Change Log
 
-## [1.0.0](https://github.com/codenamephp/chef.cookbook.gui/tree/1.0.0) (2018-06-05)
+## [1.1.0](https://github.com/codenamephp/chef.cookbook.gui/tree/1.1.0) (2018-06-06)
+[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.0.0...1.1.0)
+
+**Implemented enhancements:**
+
+- Add default config for xfce [\#5](https://github.com/codenamephp/chef.cookbook.gui/issues/5)
+
+## [v1.0.0](https://github.com/codenamephp/chef.cookbook.gui/tree/v1.0.0) (2018-06-04)
 **Implemented enhancements:**
 
 - Update structure and move to travis ci [\#2](https://github.com/codenamephp/chef.cookbook.gui/issues/2)
 - Add support for xfce [\#1](https://github.com/codenamephp/chef.cookbook.gui/issues/1)
+
+**Merged pull requests:**
+
+- Release 1.0.0 [\#3](https://github.com/codenamephp/chef.cookbook.gui/pull/3) ([bastianschwarz](https://github.com/bastianschwarz))
 
 
 
