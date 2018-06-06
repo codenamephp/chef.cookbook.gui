@@ -62,9 +62,9 @@ describe 'codenamephp_gui::xfce' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new do |node|
         node.override['etc']['passwd'] = {
-          'user1' => { 'dir' => '/home/user1','uid' => 1000, 'gid' => 123 },
-          'user2' => { 'dir' => '/home/user2','uid' => 1001, 'gid' => 456 },
-          'user3' => { 'dir' => '/home/user2','uid' => 500, 'gid' => 789 }
+          'user1' => { 'dir' => '/home/user1', 'uid' => 1000, 'gid' => 123 },
+          'user2' => { 'dir' => '/home/user2', 'uid' => 1001, 'gid' => 456 },
+          'user3' => { 'dir' => '/home/user2', 'uid' => 500, 'gid' => 789 }
         }
       end.converge(described_recipe)
     end
