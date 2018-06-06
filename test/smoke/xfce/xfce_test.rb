@@ -17,4 +17,9 @@ control 'xfce-1.0' do
     # service won't start in dokken ... @TODO figure this out later
     # it { should be_running }
   end
+
+  describe directory('/etc/skel/xfce4') do
+    it { should exist }
+    it { should be_directory }
+  end
 end
