@@ -5,11 +5,9 @@
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
 include_recipe 'apt'
-include_recipe '::reboot'
 
 package 'install xfce from package' do
   package_name node['codenamephp_gui']['xfce']['package_name']
-  notifies :request_reboot, 'reboot[reboot]', :immediately # disabled for now, see https://github.com/codenamephp/chef.cookbook.gui/issues/4
 end
 
 service 'lightdm' do
