@@ -3,15 +3,7 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_zero 
-  retry_on_exit_code:
-    - 35
-    - 20
-    - 1
-  wait_for_retry: 120
-  client_rb:
-    exit_status: :enabled
-    client_fork: false
+   name: chef_solo
 
 verifier:
   name: inspec
