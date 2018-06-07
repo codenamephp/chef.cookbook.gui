@@ -1,11 +1,27 @@
 # Change Log
 
-## [1.1.0](https://github.com/codenamephp/chef.cookbook.gui/tree/1.1.0) (2018-06-06)
-[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.0.0...1.1.0)
+## [v1.1.1](https://github.com/codenamephp/chef.cookbook.gui/tree/v1.1.1) (2018-06-08)
+[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.1.0...v1.1.1)
+
+**Implemented enhancements:**
+
+- Add reboot to recipies [\#4](https://github.com/codenamephp/chef.cookbook.gui/issues/4)
+
+**Fixed bugs:**
+
+- config folder is created with the wrong permissions [\#8](https://github.com/codenamephp/chef.cookbook.gui/issues/8)
+
+## [v1.1.0](https://github.com/codenamephp/chef.cookbook.gui/tree/v1.1.0) (2018-06-06)
+[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.0.0...v1.1.0)
 
 **Implemented enhancements:**
 
 - Add default config for xfce [\#5](https://github.com/codenamephp/chef.cookbook.gui/issues/5)
+
+**Merged pull requests:**
+
+- Exclude system users from gui config [\#7](https://github.com/codenamephp/chef.cookbook.gui/pull/7) ([bastianschwarz](https://github.com/bastianschwarz))
+- Release 1.1.0 [\#6](https://github.com/codenamephp/chef.cookbook.gui/pull/6) ([bastianschwarz](https://github.com/bastianschwarz))
 
 ## [v1.0.0](https://github.com/codenamephp/chef.cookbook.gui/tree/v1.0.0) (2018-06-04)
 **Implemented enhancements:**
