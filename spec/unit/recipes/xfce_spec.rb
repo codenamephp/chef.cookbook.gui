@@ -64,9 +64,18 @@ describe 'codenamephp_gui::xfce' do
         node.override['etc']['passwd'] = {
           'user1' => { 'dir' => '/home/user1', 'uid' => 1000, 'gid' => 123 },
           'user2' => { 'dir' => '/home/user2', 'uid' => 1001, 'gid' => 456 },
-          'user3' => { 'dir' => '/home/user2', 'uid' => 500, 'gid' => 789 }
+          'user3' => { 'dir' => '/home/user3', 'uid' => 500, 'gid' => 789 },
+          'user4' => { 'dir' => '/home/user4', 'uid' => 1002, 'gid' => 789 }
         }
       end.converge(described_recipe)
+    end
+
+    before(:each) do
+      allow(File).to receive(:directory?).with(anything).and_call_original
+      allow(File).to receive(:directory?).with('/home/user1').and_return true
+      allow(File).to receive(:directory?).with('/home/user2').and_return true
+      allow(File).to receive(:directory?).with('/home/user3').and_return true
+      allow(File).to receive(:directory?).with('/home/user4').and_return false
     end
 
     it 'converges successfully' do
@@ -74,9 +83,17 @@ describe 'codenamephp_gui::xfce' do
     end
 
     it 'copies the xfce folder to all user configs' do
-      expect(chef_run).to create_remote_directory_if_missing('/home/user1/.config/xfce4').with(owner: 'user1', group: 123)
-      expect(chef_run).to create_remote_directory_if_missing('/home/user2/.config/xfce4').with(owner: 'user2', group: 456)
+      expect(chef_run).to create_directory('/home/user1/.config').with(owner: 'user1', group: 123, mode: '0755')
+      expect(chef_run).to create_remote_directory_if_missing('/home/user1/.config/xfce4').with(owner: 'user1', group: 123, mode: '0755')
+
+      expect(chef_run).to create_directory('/home/user2/.config').with(owner: 'user2', group: 456, mode: '0755')
+      expect(chef_run).to create_remote_directory_if_missing('/home/user2/.config/xfce4').with(owner: 'user2', group: 456, mode: '0755')
+
+      expect(chef_run).to_not create_directory('/home/user3/.config')
       expect(chef_run).to_not create_remote_directory_if_missing('/home/user3/.config/xfce4')
+
+      expect(chef_run).to_not create_directory('/home/user4/.config')
+      expect(chef_run).to_not create_remote_directory_if_missing('/home/user4/.config/xfce4')
     end
   end
 end
