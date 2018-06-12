@@ -101,7 +101,7 @@ namespace :documentation do
   end
 end
 desc 'Run the documentation cycle'
-task documentation: %w[documentation:changelog]
+task documentation: %w[documentation:changelog_commit]
 
 namespace :release ['git:setup'] do
   desc 'Tag and release to supermarket with stove'
