@@ -28,11 +28,7 @@ install:
 
 script:
   - chef exec rake
-  
-before_deploy:
-  - git config --local user.name "Travis CI"
-  - git config --local user.email "travis@codename-php.de"
-  - git remote set-url --push origin "https://$GH_TOKEN@github.com/codenamephp/chef.cookbook.gui.git"
+
 deploy:
   - provider: script
     on:
