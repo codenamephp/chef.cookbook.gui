@@ -15,7 +15,7 @@ service 'lightdm' do
   subscribes :start, 'package[install xfce from package]', :delayed
 end
 
-remote_directory '/etc/skel/xfce4' do
+remote_directory '/etc/skel/.config/xfce4' do
   action :create_if_missing
   source 'xfce4'
   owner 'root'

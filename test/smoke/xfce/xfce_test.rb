@@ -18,7 +18,7 @@ control 'xfce-1.0' do
     # it { should be_running }
   end
 
-  describe directory('/etc/skel/xfce4') do
+  describe directory('/etc/skel/.config/xfce4') do
     it { should exist }
     it { should be_directory }
   end
