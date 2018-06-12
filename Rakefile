@@ -11,7 +11,7 @@ def use_dokken?
   ENV['USE_DOKKEN'] || ci?
 end
 
-task default: %w[style unit integration]
+task default: %w[style unit integration documentation]
 
 namespace :git do
   desc 'Setting up git for pushing'
