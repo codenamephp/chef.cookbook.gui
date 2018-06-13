@@ -97,7 +97,7 @@ namespace :documentation do
     unless match.nil?
       sh 'github_changelog_generator --future-release ' + match[1].to_s
       sh 'git status'
-      sh 'git add CHANGELOG.md && git commit --allow-empty -m"[skip ci] Updated changelog" && git push'
+      sh 'git add CHANGELOG.md && git commit --allow-empty -m"[skip ci] Updated changelog" && git push origin ' + ENV['TRAVIS_BRANCH']
     end
   end
 end
