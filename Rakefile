@@ -18,7 +18,7 @@ namespace :git do
   task :setup do
     sh 'git config --local user.name "Travis CI"'
     sh 'git config --local user.email "travis@codename-php.de"'
-    sh 'git remote set-url --push origin "https://' + ENV['GH_TOKEN'] + '@github.com/codenamephp/chef.cookbook.gui.git"'
+    sh 'git remote set-url --push origin "https://' + ENV['GH_TOKEN'].to_s + '@github.com/codenamephp/chef.cookbook.gui.git"'
   end
 end
 
@@ -68,27 +68,47 @@ namespace :integration do
   # @param regexp [String] regular expression to match against instance names.
   # @param loader_config [Hash] loader configuration options.
   # @return void
-  def run_kitchen(action, regexp, loader_config = {})
+  def run_kitchen(action, regexp, concurrency, loader_config = {})
     action = 'test' if action.nil?
     require 'kitchen'
     Kitchen.logger = Kitchen.default_file_logger
     config = { loader: Kitchen::Loader::YAML.new(loader_config) }
-    kitchen_instances(regexp, config).each { |i| i.send(action) }
+
+    call_threaded(kitchen_instances(regexp, config), action, concurrency)
+  end
+
+  # Calls a method on a list of objects in concurrent threads.
+  #
+  # @param objects [Array] list of objects.
+  # @param method_name [#to_s] method to call on the objects.
+  # @param concurrency [Integer] number of objects to call the method on concurrently.
+  # @return void
+  def call_threaded(objects, method_name, concurrency)
+    puts "method_name: #{method_name}, concurrency: #{concurrency}"
+    threads = []
+    raise 'concurrency must be > 0' if concurrency < 1
+    objects.each do |obj|
+      sleep 3 until threads.map(&:alive?).count(true) < concurrency
+      threads << Thread.new { obj.method(method_name).call }
+    end
+    threads.map(&:join)
   end
 
   desc 'Run Test Kitchen integration tests using vagrant'
-  task :vagrant, %i[regexp action] do |_t, args|
-    run_kitchen(args.action, args.regexp)
+  task :vagrant, [:regexp, :action, :concurrency] do |_t, args|
+    args.with_defaults(regexp: 'all', action: 'test', concurrency: 4)
+    run_kitchen(args.action, args.regexp, args.concurrency.to_i)
   end
 
   desc 'Run Test Kitchen integration tests using dokken'
-  task :dokken, %i[regexp action] do |_t, args|
-    run_kitchen(args.action, args.regexp, local_config: '.kitchen.dokken.yml')
+  task :dokken, [:regexp, :action, :concurrency] do |_t, args|
+    args.with_defaults(regexp: 'all', action: 'test', concurrency: 4)
+    run_kitchen(args.action, args.regexp, args.concurrency.to_i, local_config: '.kitchen.dokken.yml')
   end
 end
 
 desc 'Run Test Kitchen integration tests'
-task :integration, %i[regexp action] => ci? || use_dokken? ? %w[integration:dokken] : %w[integration:vagrant]
+task :integration, %i[regexp action concurrency] => ci? || use_dokken? ? %w[integration:dokken] : %w[integration:vagrant]
 
 namespace :documentation do
   desc 'Generate changelog from current commit message'
@@ -106,7 +126,7 @@ task documentation: %w[documentation:changelog_commit]
 
 namespace :release do
   desc 'Tag and release to supermarket with stove'
-  task :stove ['git:setup'] do
+  task stove: ['git:setup'] do
     sh 'chef exec stove --username codenamephp --key ./codenamephp.pem'
   end
 
