@@ -1,7 +1,11 @@
 # Change Log
 
-## [1.2.0](https://github.com/codenamephp/chef.cookbook.gui/tree/1.2.0) (2018-06-12)
+## [1.2.0](https://github.com/codenamephp/chef.cookbook.gui/tree/1.2.0) (2018-06-13)
 [Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.1.1...1.2.0)
+
+**Implemented enhancements:**
+
+- Create task to generate changelog [\#12](https://github.com/codenamephp/chef.cookbook.gui/issues/12)
 
 **Fixed bugs:**
 
