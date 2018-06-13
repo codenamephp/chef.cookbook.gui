@@ -1,6 +1,17 @@
 # Change Log
 
-## [v1.1.1](https://github.com/codenamephp/chef.cookbook.gui/tree/v1.1.1) (2018-06-08)
+## [1.2.0](https://github.com/codenamephp/chef.cookbook.gui/tree/1.2.0) (2018-06-13)
+[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.1.1...1.2.0)
+
+**Implemented enhancements:**
+
+- Create task to generate changelog [\#12](https://github.com/codenamephp/chef.cookbook.gui/issues/12)
+
+**Fixed bugs:**
+
+- xfce config in /etc/skel is missing folder [\#9](https://github.com/codenamephp/chef.cookbook.gui/issues/9)
+
+## [v1.1.1](https://github.com/codenamephp/chef.cookbook.gui/tree/v1.1.1) (2018-06-07)
 [Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.1.0...v1.1.1)
 
 **Implemented enhancements:**
@@ -10,6 +21,10 @@
 **Fixed bugs:**
 
 - config folder is created with the wrong permissions [\#8](https://github.com/codenamephp/chef.cookbook.gui/issues/8)
+
+**Merged pull requests:**
+
+- Release 1.1.1 [\#10](https://github.com/codenamephp/chef.cookbook.gui/pull/10) ([bastianschwarz](https://github.com/bastianschwarz))
 
 ## [v1.1.0](https://github.com/codenamephp/chef.cookbook.gui/tree/v1.1.0) (2018-06-06)
 [Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.0.0...v1.1.0)

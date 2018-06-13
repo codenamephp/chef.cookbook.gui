@@ -11,7 +11,16 @@ def use_dokken?
   ENV['USE_DOKKEN'] || ci?
 end
 
-task default: %w[style unit integration]
+task default: %w[style unit integration documentation]
+
+namespace :git do
+  desc 'Setting up git for pushing'
+  task :setup do
+    sh 'git config --local user.name "Travis CI"'
+    sh 'git config --local user.email "travis@codename-php.de"'
+    sh 'git remote set-url --push origin "https://' + ENV['GH_TOKEN'] + '@github.com/codenamephp/chef.cookbook.gui.git"'
+  end
+end
 
 namespace :style do
   require 'rubocop/rake_task'
@@ -81,7 +90,21 @@ end
 desc 'Run Test Kitchen integration tests'
 task :integration, %i[regexp action] => ci? || use_dokken? ? %w[integration:dokken] : %w[integration:vagrant]
 
-namespace :release do
+namespace :documentation do
+  desc 'Generate changelog from current commit message'
+  task changelog_commit: ['git:setup'] do
+    match = Regexp.new('\[RELEASE\s([\d\.]+)\]').match(ENV['TRAVIS_COMMIT_MESSAGE'])
+    unless match.nil?
+      sh 'github_changelog_generator --future-release ' + match[1].to_s
+      sh 'git status'
+      sh 'git add CHANGELOG.md && git commit --allow-empty -m"[skip ci] Updated changelog" && git push origin ' + ENV['TRAVIS_BRANCH']
+    end
+  end
+end
+desc 'Run the documentation cycle'
+task documentation: %w[documentation:changelog_commit]
+
+namespace :release ['git:setup'] do
   desc 'Tag and release to supermarket with stove'
   task :stove do
     sh 'chef exec stove --username codenamephp --key ./codenamephp.pem'

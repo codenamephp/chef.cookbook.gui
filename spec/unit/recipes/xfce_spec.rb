@@ -37,7 +37,7 @@ describe 'codenamephp_gui::xfce' do
     end
 
     it 'will copy the config to the /etc/skel diretory for all newly created users' do
-      expect(chef_run).to create_remote_directory_if_missing('/etc/skel/xfce4')
+      expect(chef_run).to create_remote_directory_if_missing('/etc/skel/.config/xfce4')
     end
   end
 
