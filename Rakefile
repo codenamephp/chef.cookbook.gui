@@ -104,9 +104,9 @@ end
 desc 'Run the documentation cycle'
 task documentation: %w[documentation:changelog_commit]
 
-namespace :release ['git:setup'] do
+namespace :release do
   desc 'Tag and release to supermarket with stove'
-  task :stove do
+  task :stove ['git:setup'] do
     sh 'chef exec stove --username codenamephp --key ./codenamephp.pem'
   end
 
