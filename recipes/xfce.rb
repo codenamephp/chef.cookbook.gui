@@ -41,3 +41,5 @@ node['etc']['passwd'].each do |user, data|
     mode '0755'
   end
 end
+
+package 'gnome-keyring'
