@@ -1,15 +1,35 @@
 # Change Log
 
-## [1.2.0](https://github.com/codenamephp/chef.cookbook.gui/tree/1.2.0) (2018-06-13)
-[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.1.1...1.2.0)
+## [Unreleased](https://github.com/codenamephp/chef.cookbook.gui/tree/HEAD)
+
+[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.2.0...HEAD)
 
 **Implemented enhancements:**
 
+- xfce: Make sure key ring is installed [\#18](https://github.com/codenamephp/chef.cookbook.gui/issues/18)
+- Replace repo name with env variable [\#14](https://github.com/codenamephp/chef.cookbook.gui/issues/14)
+
+**Closed issues:**
+
+- xfce: Start gnome services [\#19](https://github.com/codenamephp/chef.cookbook.gui/issues/19)
+
+## [v1.2.0](https://github.com/codenamephp/chef.cookbook.gui/tree/v1.2.0) (2018-06-13)
+[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.1.1...v1.2.0)
+
+**Implemented enhancements:**
+
+- Add concurrency to ktichen [\#16](https://github.com/codenamephp/chef.cookbook.gui/issues/16)
 - Create task to generate changelog [\#12](https://github.com/codenamephp/chef.cookbook.gui/issues/12)
 
 **Fixed bugs:**
 
 - xfce config in /etc/skel is missing folder [\#9](https://github.com/codenamephp/chef.cookbook.gui/issues/9)
+
+**Merged pull requests:**
+
+- Fixes \#16: Added concurrency to kitchen [\#17](https://github.com/codenamephp/chef.cookbook.gui/pull/17) ([bastianschwarz](https://github.com/bastianschwarz))
+- Fixed error in Rakefile wehre the dependencies were at worng position [\#15](https://github.com/codenamephp/chef.cookbook.gui/pull/15) ([bastianschwarz](https://github.com/bastianschwarz))
+- \[RELEASE 1.2.0\] [\#13](https://github.com/codenamephp/chef.cookbook.gui/pull/13) ([bastianschwarz](https://github.com/bastianschwarz))
 
 ## [v1.1.1](https://github.com/codenamephp/chef.cookbook.gui/tree/v1.1.1) (2018-06-07)
 [Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.1.0...v1.1.1)
