@@ -9,6 +9,10 @@
 - xfce: Make sure key ring is installed [\#18](https://github.com/codenamephp/chef.cookbook.gui/issues/18)
 - Replace repo name with env variable [\#14](https://github.com/codenamephp/chef.cookbook.gui/issues/14)
 
+**Fixed bugs:**
+
+- Rake: Remove kitchen concurrency [\#20](https://github.com/codenamephp/chef.cookbook.gui/issues/20)
+
 **Closed issues:**
 
 - xfce: Start gnome services [\#19](https://github.com/codenamephp/chef.cookbook.gui/issues/19)
