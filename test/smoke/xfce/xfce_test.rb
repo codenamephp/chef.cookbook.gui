@@ -23,7 +23,7 @@ control 'xfce-1.0' do
     it { should be_directory }
   end
 
-  describe command('gnome-keyring') do
-    it { should exist }
-  end
+  # describe command('gnome-keyring') do
+  #   it { should exist }
+  # end
 end

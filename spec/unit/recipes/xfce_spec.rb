@@ -40,9 +40,9 @@ describe 'codenamephp_gui::xfce' do
       expect(chef_run).to create_remote_directory_if_missing('/etc/skel/.config/xfce4')
     end
 
-    it 'will install gnome-keyring from package' do
-      expect(chef_run).to install_package('gnome-keyring')
-    end
+    # it 'will install gnome-keyring from package' do
+    #   expect(chef_run).to install_package('gnome-keyring')
+    # end
   end
 
   context 'When custom package name was set' do

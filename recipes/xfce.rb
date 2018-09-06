@@ -42,4 +42,4 @@ node['etc']['passwd'].each do |user, data|
   end
 end
 
-package 'gnome-keyring'
+# package 'gnome-keyring'
