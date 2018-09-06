@@ -14,10 +14,6 @@ def use_dokken?
   ENV['USE_DOKKEN'] || ci?
 end
 
-def concurrency
-  ENV['CONCURRENCY'] || 1
-end
-
 def origin_branch
   ENV['TRAVIS_PULL_REQUEST_BRANCH'].presence || ENV['TRAVIS_BRANCH'].presence || 'master'
 end
@@ -81,47 +77,27 @@ namespace :integration do
   # @param regexp [String] regular expression to match against instance names.
   # @param loader_config [Hash] loader configuration options.
   # @return void
-  def run_kitchen(action, regexp, concurrency, loader_config = {})
+  def run_kitchen(action, regexp, loader_config = {})
     action = 'test' if action.nil?
     require 'kitchen'
     Kitchen.logger = Kitchen.default_file_logger
     config = { loader: Kitchen::Loader::YAML.new(loader_config) }
-
-    call_threaded(kitchen_instances(regexp, config), action, concurrency)
-  end
-
-  # Calls a method on a list of objects in concurrent threads.
-  #
-  # @param objects [Array] list of objects.
-  # @param method_name [#to_s] method to call on the objects.
-  # @param concurrency [Integer] number of objects to call the method on concurrently.
-  # @return void
-  def call_threaded(objects, method_name, concurrency)
-    puts "method_name: #{method_name}, concurrency: #{concurrency}"
-    threads = []
-    raise 'concurrency must be > 0' if concurrency < 1
-    objects.each do |obj|
-      sleep 3 until threads.map(&:alive?).count(true) < concurrency
-      threads << Thread.new { obj.method(method_name).call }
-    end
-    threads.map(&:join)
+    kitchen_instances(regexp, config).each { |i| i.send(action) }
   end
 
   desc 'Run Test Kitchen integration tests using vagrant'
-  task :vagrant, [:regexp, :action, :concurrency] do |_t, args|
-    args.with_defaults(regexp: 'all', action: 'test', concurrency: concurrency)
-    run_kitchen(args.action, args.regexp, args.concurrency.to_i)
+  task :vagrant, %i[regexp action] do |_t, args|
+    run_kitchen(args.action, args.regexp)
   end
 
   desc 'Run Test Kitchen integration tests using dokken'
-  task :dokken, [:regexp, :action, :concurrency] do |_t, args|
-    args.with_defaults(regexp: 'all', action: 'test', concurrency: concurrency)
-    run_kitchen(args.action, args.regexp, args.concurrency.to_i, local_config: '.kitchen.dokken.yml')
+  task :dokken, %i[regexp action] do |_t, args|
+    run_kitchen(args.action, args.regexp, local_config: '.kitchen.dokken.yml')
   end
 end
 
 desc 'Run Test Kitchen integration tests'
-task :integration, %i[regexp action concurrency] => ci? || use_dokken? ? %w[integration:dokken] : %w[integration:vagrant]
+task :integration, %i[regexp action] => ci? || use_dokken? ? %w[integration:dokken] : %w[integration:vagrant]
 
 namespace :documentation do
   version_match = Regexp.new('\[RELEASE\s([\d\.]+)\]').match(ENV['TRAVIS_COMMIT_MESSAGE'])
