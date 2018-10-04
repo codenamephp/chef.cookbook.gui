@@ -6,7 +6,6 @@
 
 **Implemented enhancements:**
 
-- xfce: Make sure key ring is installed [\#18](https://github.com/codenamephp/chef.cookbook.gui/issues/18)
 - Replace repo name with env variable [\#14](https://github.com/codenamephp/chef.cookbook.gui/issues/14)
 
 **Fixed bugs:**
