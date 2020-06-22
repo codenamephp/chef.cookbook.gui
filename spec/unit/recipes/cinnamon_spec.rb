@@ -20,10 +20,6 @@ describe 'codenamephp_gui::cinnamon' do
       expect { chef_run }.to_not raise_error
     end
 
-    it 'includes apt cookbook to update sources' do
-      expect(chef_run).to include_recipe('apt')
-    end
-
     it 'installs cinnamon-core from package' do
       expect(chef_run).to install_package('install cinnamon from package').with(package_name: 'cinnamon-core')
     end

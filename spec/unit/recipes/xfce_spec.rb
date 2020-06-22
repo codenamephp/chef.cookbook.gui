@@ -21,10 +21,6 @@ describe 'codenamephp_gui::xfce' do
       expect { chef_run }.to_not raise_error
     end
 
-    it 'includes apt cookbook to update sources' do
-      expect(chef_run).to include_recipe('apt')
-    end
-
     it 'installs xfce from package' do
       expect(chef_run).to install_package('install xfce from package').with(package_name: 'xfce4')
     end
