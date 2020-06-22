@@ -1,8 +1,8 @@
 # Change Log
 
-## [1.2.1](https://github.com/codenamephp/chef.cookbook.gui/tree/1.2.1) (2020-06-22)
+## [2.0.0](https://github.com/codenamephp/chef.cookbook.gui/tree/2.0.0) (2020-06-22)
 
-[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.2.0...1.2.1)
+[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.2.0...2.0.0)
 
 **Implemented enhancements:**
 
