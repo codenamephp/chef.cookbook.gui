@@ -46,9 +46,6 @@ jobs:
     - stage: Integration
       name: "Kitchen: XFCE"
       script: chef exec kitchen test xfce
-    - stage: Integration
-      name: "Kitchen: All for comparison"
-      script: chef exec kitchen test
 
     - stage: Deploy
       if: tag IS present
