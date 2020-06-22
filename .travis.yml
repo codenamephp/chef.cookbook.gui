@@ -51,6 +51,7 @@ jobs:
       if: tag IS present
       script: skip
       before_deploy:
+        - chef exec berks install
         - chef exec knife cookbook metadata from file metadata.rb
       deploy:
         provider: chef_supermarket
