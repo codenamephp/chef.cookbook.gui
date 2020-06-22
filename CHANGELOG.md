@@ -1,5 +1,29 @@
 # Change Log
 
+## [2.0.0](https://github.com/codenamephp/chef.cookbook.gui/tree/2.0.0) (2020-06-22)
+
+[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.2.0...2.0.0)
+
+**Implemented enhancements:**
+
+- Add gnome3 [\#23](https://github.com/codenamephp/chef.cookbook.gui/issues/23)
+- Replace repo name with env variable [\#14](https://github.com/codenamephp/chef.cookbook.gui/issues/14)
+
+**Fixed bugs:**
+
+- Rake: Remove kitchen concurrency [\#20](https://github.com/codenamephp/chef.cookbook.gui/issues/20)
+
+**Closed issues:**
+
+- Rework xfce to resource [\#26](https://github.com/codenamephp/chef.cookbook.gui/issues/26)
+- Rework cinnamon to resource [\#25](https://github.com/codenamephp/chef.cookbook.gui/issues/25)
+- Fix and update build [\#21](https://github.com/codenamephp/chef.cookbook.gui/issues/21)
+- xfce: Start gnome services [\#19](https://github.com/codenamephp/chef.cookbook.gui/issues/19)
+
+**Merged pull requests:**
+
+- Build and settings [\#24](https://github.com/codenamephp/chef.cookbook.gui/pull/24) ([bastianschwarz](https://github.com/bastianschwarz))
+
 ## [Unreleased](https://github.com/codenamephp/chef.cookbook.gui/tree/HEAD)
 
 [Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.2.0...HEAD)
