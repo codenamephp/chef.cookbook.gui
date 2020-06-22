@@ -21,7 +21,7 @@ suites:
     attributes:
   - name: xfce
     run_list:
-      - recipe[codenamephp_gui::xfce]
+      - recipe[codenamephp_gui::xfce4]
     verifier:
       inspec_tests:
         - test/smoke/xfce

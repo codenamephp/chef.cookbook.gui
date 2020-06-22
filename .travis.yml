@@ -27,7 +27,7 @@ script:
   - chef exec foodcritic .
   - chef exec rubocop
   - chef exec rspec
-  - travis_retry chef exec kitchen test
+  - chef exec kitchen test
 
 before_deploy:
   - chef exec knife cookbook metadata from file metadata.rb
