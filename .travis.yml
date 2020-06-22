@@ -24,31 +24,27 @@ install:
   - openssl aes-256-cbc -K $encrypted_de6880523b74_key -iv $encrypted_de6880523b74_iv -in codenamephp.pem.enc -out codenamephp.pem -d
 
 stages:
-  - lint
-  - unit
-  - integration
-  - deploy
+  - "Lint and Unit"
+  - Integration
+  - Deploy
 
 jobs:
   fast_finish: true
   include:
-    - stage: lint
+    - stage: "Lint and Unit"
       script: 
           - chef exec foodcritic .
           - chef exec rubocop
-          
-    - stage: unit
-      script:
-        - chef exec rspec
+          - chef exec rspec
 
-    - stage: integration
+    - stage: Integration
       script: chef exec kitchen test gnome
-    - stage: integration
+    - stage: Integration
       script: chef exec kitchen test cinnamon
-    - stage: integration
+    - stage: Integration
       script: chef exec kitchen test xfce
 
-    - stage: deploy
+    - stage: Deploy
       script: skip
       before_deploy:
         - chef exec knife cookbook metadata from file metadata.rb

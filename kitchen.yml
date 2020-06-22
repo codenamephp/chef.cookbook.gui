@@ -26,7 +26,7 @@ suites:
       inspec_tests:
         - test/smoke/xfce
     attributes:
-  - name: xfce
+  - name: gnome
     run_list:
       - recipe[codenamephp_gui::gnome]
     verifier:
