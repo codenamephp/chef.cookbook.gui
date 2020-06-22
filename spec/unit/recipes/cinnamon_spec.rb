@@ -9,44 +9,13 @@
 require 'spec_helper'
 
 describe 'codenamephp_gui::cinnamon' do
-  context 'When all attributes are default' do
-    let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new
-      runner.converge(described_recipe)
-    end
-    let(:lightdmService) { chef_run.service('lightdm') }
-
+  context 'Install when all attributes are default' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
 
-    it 'installs cinnamon-core from package' do
-      expect(chef_run).to install_package('install cinnamon from package').with(package_name: 'cinnamon-core')
-    end
-
-    it 'starts and enables lightdm service' do
-      expect(chef_run).to enable_service('lightdm')
-      expect(chef_run).to start_service('lightdm')
-    end
-
-    it 'subscribes lightdm to start delayed when the package is installed' do
-      expect(lightdmService).to subscribe_to('package[install cinnamon from package]').on(:start).delayed
-    end
-  end
-
-  context 'When custom package name was set' do
-    let(:chef_run) do
-      ChefSpec::SoloRunner.new do |node|
-        node.override['codenamephp_gui']['cinnamon']['package_name'] = 'other package'
-      end.converge(described_recipe)
-    end
-
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
-    end
-
-    it 'installs cinnamon-core from package' do
-      expect(chef_run).to install_package('install cinnamon from package').with(package_name: 'other package')
+    it 'installs cinnamon using resource' do
+      expect(chef_run).to install_codenamephp_gui_cinnamon('install cinnamon')
     end
   end
 end
