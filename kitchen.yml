@@ -9,7 +9,7 @@ verifier:
   name: inspec
 
 platforms:
-  - name: debian-9.3
+  - name: debian-10
 
 suites:
   - name: cinnamon

@@ -1,0 +1,28 @@
+name: Update Release Info
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update_version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: calculate next version
+        id: version
+        uses: patrickjahns/version-drafter-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: draft release
+        uses: release-drafter/release-drafter@master
+        with:
+          version: ${{ format('{0}', steps.version.outputs.next-version) }}
+          tag: ${{ format('{0}', steps.version.outputs.next-version) }}
+          name: ${{ format('{0}', steps.version.outputs.next-version) }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@master
+      - name: update changelog
+        uses: patrickjahns/chlgr@v1
+        with:
+          release-version: ${{ steps.version.outputs.next-version }}

@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 #
 # Cookbook:: codenamephp_gui
 # Recipe:: cinnamon
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
-
-include_recipe 'apt'
 
 package 'install cinnamon from package' do
   package_name node['codenamephp_gui']['cinnamon']['package_name']
