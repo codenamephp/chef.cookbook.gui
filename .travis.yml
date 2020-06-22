@@ -36,14 +36,18 @@ jobs:
       script: 
           - chef exec foodcritic .
           - chef exec rubocop
+          
     - stage: unit
       script:
         - chef exec rspec
+
     - stage: integration
-      script: 
-        - chef exec kitchen test gnome
-        - chef exec kitchen test cinnamon
-        - chef exec kitchen test xfce
+      script: chef exec kitchen test gnome
+    - stage: integration
+      script: chef exec kitchen test cinnamon
+    - stage: integration
+      script: chef exec kitchen test xfce
+
     - stage: deploy
       script: skip
       before_deploy:
