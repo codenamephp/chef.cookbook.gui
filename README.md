@@ -114,6 +114,7 @@ The `codenamephp_gui_xfce` resource installs or uninstalls the gnome gui.
 
 #### Actions
 - `:install`: Installs the gui using apt
+- `:uninstall`: Uninstalls the gui using apt
 
 #### Properties
 - `package_name`: The name of the apt package to use for install, defaults to 'gnome-core'
