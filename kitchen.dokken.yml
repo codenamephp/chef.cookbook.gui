@@ -11,7 +11,7 @@ provisioner:
   deprecations_as_errors: true
  
 platforms:
-  - name: debian-9
+  - name: debian-10
     driver:
-      image: dokken/debian-9
+      image: dokken/debian-10
       pid_one_command: /bin/systemd

@@ -8,14 +8,14 @@
 
 require 'spec_helper'
 
-describe 'codenamephp_gui::cinnamon' do
-  context 'Install when all attributes are default' do
+describe 'codenamephp_gui::gnome' do
+  context 'When all attributes are default' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
 
     it 'installs cinnamon using resource' do
-      expect(chef_run).to install_codenamephp_gui_cinnamon('install cinnamon')
+      expect(chef_run).to install_codenamephp_gui_gnome('install gnome')
     end
   end
 end

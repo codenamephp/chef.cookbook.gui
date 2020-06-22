@@ -1,5 +1,5 @@
 # Chef Cookbook Gui
-[![Build Status](https://travis-ci.org/codenamephp/chef.cookbook.gui.svg?branch=dev)](https://travis-ci.org/codenamephp/chef.cookbook.gui)
+[![Build Status](https://travis-ci.com/codenamephp/chef.cookbook.gui.svg?branch=master)](https://travis-ci.com/codenamephp/chef.cookbook.gui)
 
 Cookbook to install linux guis like cinnamon, gnome, ...
 
@@ -13,7 +13,8 @@ The default cookbook is a No-Op. To install a gui, add the respective cookbook t
 
 ### Suported GUIs
 - cinnamon
-- xfce
+- xfce4
+- gnome
 
 ### Chef
 
@@ -46,14 +47,90 @@ Add the gui cookbook to your runlist, e.g. in a role:
 
 Note that the default recipe is a No-Op, so you need to add the gui you want
 
-### Attributes
+### Recipes
+Each recipe just uses the respective resource without any arguments. They are meant to use as a shortcut in a runlist or via chef manage gui. If you need some
+additional properties use the resources in a wrapper cookbook.
 
-#### Cinnamon
+### Resources
 
-- `['codenamephp_gui']['cinnamon']['package_name']` - The package name that is used 
-  to install cinnamon, defaults to `'cinnamon-core'` to install the minimal version of cinnamon
+### Cinnamon
+The `codenamephp_gui_cinnamon` resource installs or uninstalls the cinnamon gui.
 
-#### xfce
+#### Actions
+- `:install`: Installs the gui using apt and starts and enables the lightdm display manager
+- `:uninstall`: Uninstalls the lightdm display manager
 
-- `['codenamephp_gui']['xfce']['package_name']` - The package name that is used 
-  to install xfce, defaults to `'xfce'` to install the minimal version of xfce
+#### Properties
+- `package_name`: The name of the apt package to use for install, defaults to 'cinnamon-core'
+- `lightdm`: Boolean to enable or disable the lightdm handling, defaults to true
+
+#### Examples
+```ruby
+# Minmal parameters
+codenamephp_gui_cinnamon 'install cinnamon gui'
+
+# Custom package name and disabled lightdm
+codenamephp_gui_cinnamon 'install cinnamon gui' do
+  package_name 'cinnamon'
+  lightdm false
+end
+
+# Uninstall
+codenamephp_gui_cinnamon 'install cinnamon gui' do
+  action :uninstall
+end
+```
+
+### XFCE4
+The `codenamephp_gui_xfce` resource installs or uninstalls the xfce4 gui.
+
+#### Actions
+- `:install`: Installs the gui using apt and starts and enables the lightdm display manager
+- `:uninstall`: Uninstalls the lightdm display manager
+
+#### Properties
+- `package_name`: The name of the apt package to use for install, defaults to 'xfce4-core'
+- `lightdm`: Boolean to enable or disable the lightdm handling, defaults to true
+
+#### Examples
+```ruby
+# Minmal parameters
+codenamephp_gui_xfce4 'install xfce4 gui'
+
+# Custom package name and disabled lightdm
+codenamephp_gui_xfce4 'install xfce4 gui' do
+  package_name 'xfce4'
+  lightdm false
+end
+
+# Uninstall
+codenamephp_gui_xfce4 'install xfce4 gui' do
+  action :uninstall
+end
+```
+
+### Gnome
+The `codenamephp_gui_xfce` resource installs or uninstalls the gnome gui.
+
+#### Actions
+- `:install`: Installs the gui using apt
+- `:uninstall`: Uninstalls the gui using apt
+
+#### Properties
+- `package_name`: The name of the apt package to use for install, defaults to 'gnome-core'
+
+#### Examples
+```ruby
+# Minmal parameters
+codenamephp_gui_gnome 'install gnome gui'
+
+# Custom package name
+codenamephp_gui_gnome 'install gnome gui' do
+  package_name 'gnome'
+end
+
+# Uninstall
+codenamephp_gui_gnome 'install gnome gui' do
+  action :uninstall
+end
+```

@@ -1,4 +1,5 @@
 AllCops:
+  NewCops: enable
   Exclude:
     - 'bin/**'
     - 'bundler/**'
@@ -6,7 +7,7 @@ AllCops:
 Layout/EndOfLine:
   EnforcedStyle: lf
   
-Metrics/LineLength:
+Layout/LineLength:
   Max: 160
 
 Metrics/BlockLength:

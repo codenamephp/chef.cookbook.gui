@@ -1,6 +1,0 @@
-{
-    "rubocop.configFile": ".rubocop",
-    "ruby.intellisense": "rubyLocate",
-    "ruby.format": "rubocop",
-    "ruby.codeCompletion": "rcodetools"
-}

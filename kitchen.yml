@@ -9,7 +9,7 @@ verifier:
   name: inspec
 
 platforms:
-  - name: debian-9.3
+  - name: debian-10
 
 suites:
   - name: cinnamon
@@ -21,8 +21,15 @@ suites:
     attributes:
   - name: xfce
     run_list:
-      - recipe[codenamephp_gui::xfce]
+      - recipe[codenamephp_gui::xfce4]
     verifier:
       inspec_tests:
         - test/smoke/xfce
+    attributes:
+  - name: gnome
+    run_list:
+      - recipe[codenamephp_gui::gnome]
+    verifier:
+      inspec_tests:
+        - test/smoke/gnome
     attributes:

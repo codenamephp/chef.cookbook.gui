@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 #
 # Cookbook:: codenamephp_gui
-# Recipe:: default
+# Recipe:: xfce
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
-#
-# This is a No-Op recipe!
+
+codenamephp_gui_xfce4 'install xfce4'
