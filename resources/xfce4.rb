@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-property :package_name, String, default: 'xfce4-core', description: 'The package name that is used to install xfce4'
+property :package_name, String, default: 'xfce4', description: 'The package name that is used to install xfce4'
 property :lightdm, [true, false], default: true, description: 'Flag if the lightdm display manager should be managed'
 
 action :install do

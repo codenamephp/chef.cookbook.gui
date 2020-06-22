@@ -22,8 +22,8 @@ describe 'codenamephp_gui_xfce4' do
       expect { chef_run }.to_not raise_error
     end
 
-    it 'installs xfce4-core from package' do
-      expect(chef_run).to install_package('install xfce4 from package').with(package_name: 'xfce4-core')
+    it 'installs xfce4 from package' do
+      expect(chef_run).to install_package('install xfce4 from package').with(package_name: 'xfce4')
     end
 
     it 'starts and enables lightdm service' do
@@ -47,7 +47,7 @@ describe 'codenamephp_gui_xfce4' do
       expect { chef_run }.to_not raise_error
     end
 
-    it 'installs xfce4-core from package' do
+    it 'installs xfce4 from package' do
       expect(chef_run).to install_package('install xfce4 from package').with(package_name: 'other package')
     end
   end
@@ -77,8 +77,8 @@ describe 'codenamephp_gui_xfce4' do
       expect { chef_run }.to_not raise_error
     end
 
-    it 'uninstalls xfce4-core from package' do
-      expect(chef_run).to remove_package('uninstall xfce4 from package').with(package_name: 'xfce4-core')
+    it 'uninstalls xfce4 from package' do
+      expect(chef_run).to remove_package('uninstall xfce4 from package').with(package_name: 'xfce4')
     end
 
     it 'uninstalls lightdm from package' do
@@ -98,7 +98,7 @@ describe 'codenamephp_gui_xfce4' do
       expect { chef_run }.to_not raise_error
     end
 
-    it 'installs xfce4-core from package' do
+    it 'installs xfce4 from package' do
       expect(chef_run).to remove_package('uninstall xfce4 from package').with(package_name: 'other package')
     end
   end

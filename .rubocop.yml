@@ -7,7 +7,7 @@ AllCops:
 Layout/EndOfLine:
   EnforcedStyle: lf
   
-Metrics/LineLength:
+Layout/LineLength:
   Max: 160
 
 Metrics/BlockLength:
