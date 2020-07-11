@@ -5,6 +5,8 @@ addons:
     packages:
       - chef-workstation
 
+if: sender != "github-actions[bot]"
+
 branches:
   only:
   - master
@@ -32,7 +34,7 @@ jobs:
   fast_finish: true
   include:
     - stage: "Lint and Unit"
-      script: 
+      script:
           - chef exec foodcritic .
           - chef exec rubocop
           - chef exec rspec
