@@ -43,6 +43,44 @@ describe 'codenamephp_gui_gnome_keyboard_shortcut' do
     end
   end
 
+  context 'Add with minimal attributes and empty bindings' do
+    stubs_for_provider('codenamephp_gui_gnome_keyboard_shortcut[Add shortcut]') do |provider|
+      allow(provider).to receive_shell_out('gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings').and_return('@as []')
+    end
+
+    recipe do
+      codenamephp_gui_gnome_keyboard_shortcut 'Add shortcut' do
+        command 'some-command'
+        binding 'some keys'
+      end
+    end
+
+    it 'will set the binding array' do
+      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom bindings array')
+    end
+
+    it 'will set the new binding' do
+      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding name for Add shortcut').with(
+        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
+        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
+        key: 'name',
+        value: 'Add shortcut'
+      )
+      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding binding for Add shortcut').with(
+        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
+        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
+        key: 'binding',
+        value: 'some keys'
+      )
+      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding command for Add shortcut').with(
+        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
+        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
+        key: 'command',
+        value: 'some-command'
+      )
+    end
+  end
+
   context 'Add with shortcut_name and existing binding' do
     stubs_for_provider('codenamephp_gui_gnome_keyboard_shortcut[Replace shortcut]') do |provider|
       allow(provider).to receive_shell_out('gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings').and_return(
