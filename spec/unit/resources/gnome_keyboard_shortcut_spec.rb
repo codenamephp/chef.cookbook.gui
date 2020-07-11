@@ -5,6 +5,15 @@ require 'spec_helper'
 describe 'codenamephp_gui_gnome_keyboard_shortcut' do
   step_into :codenamephp_gui_gnome_keyboard_shortcut
 
+  def settings_expectation(chef_run, name, index, key, value)
+    expect(chef_run).to set_codenamephp_gui_gnome_gsettings("Set new custom binding #{key} for #{name}").with(
+      schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
+      path: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom#{index}/",
+      key: key,
+      value: value
+    )
+  end
+
   context 'Add with minimal attributes and no existing binding' do
     stubs_for_provider('codenamephp_gui_gnome_keyboard_shortcut[Add shortcut]') do |provider|
       allow(provider).to receive_shell_out('gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings').and_return('[]')
@@ -22,24 +31,9 @@ describe 'codenamephp_gui_gnome_keyboard_shortcut' do
     end
 
     it 'will set the new binding' do
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding name for Add shortcut').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-        key: 'name',
-        value: 'Add shortcut'
-      )
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding binding for Add shortcut').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-        key: 'binding',
-        value: 'some keys'
-      )
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding command for Add shortcut').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-        key: 'command',
-        value: 'some-command'
-      )
+      settings_expectation(chef_run, 'Add shortcut', 0, 'name', 'Add shortcut')
+      settings_expectation(chef_run, 'Add shortcut', 0, 'binding', 'some keys')
+      settings_expectation(chef_run, 'Add shortcut', 0, 'command', 'some-command')
     end
   end
 
@@ -60,24 +54,9 @@ describe 'codenamephp_gui_gnome_keyboard_shortcut' do
     end
 
     it 'will set the new binding' do
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding name for Add shortcut').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-        key: 'name',
-        value: 'Add shortcut'
-      )
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding binding for Add shortcut').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-        key: 'binding',
-        value: 'some keys'
-      )
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding command for Add shortcut').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-        key: 'command',
-        value: 'some-command'
-      )
+      settings_expectation(chef_run, 'Add shortcut', 0, 'name', 'Add shortcut')
+      settings_expectation(chef_run, 'Add shortcut', 0, 'binding', 'some keys')
+      settings_expectation(chef_run, 'Add shortcut', 0, 'command', 'some-command')
     end
   end
 
@@ -113,42 +92,13 @@ describe 'codenamephp_gui_gnome_keyboard_shortcut' do
     end
 
     it 'will set the new binding' do
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding name for Terminal').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-        key: 'name',
-        value: 'Terminal'
-      )
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding binding for Terminal').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-        key: 'binding',
-        value: '<Primary><Alt>t'
-      )
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding command for Terminal').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-        key: 'command',
-        value: 'gnome-terminal --maximize'
-      )
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding name for replaced').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/',
-        key: 'name',
-        value: 'replaced'
-      )
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding binding for replaced').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/',
-        key: 'binding',
-        value: 'some keys'
-      )
-      expect(chef_run).to set_codenamephp_gui_gnome_gsettings('Set new custom binding command for replaced').with(
-        schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS,
-        path: '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/',
-        key: 'command',
-        value: 'some-command'
-      )
+      settings_expectation(chef_run, 'Terminal', 0, 'name', 'Terminal')
+      settings_expectation(chef_run, 'Terminal', 0, 'binding', '<Primary><Alt>t')
+      settings_expectation(chef_run, 'Terminal', 0, 'command', 'gnome-terminal --maximize')
+
+      settings_expectation(chef_run, 'replaced', 1, 'name', 'replaced')
+      settings_expectation(chef_run, 'replaced', 1, 'binding', 'some keys')
+      settings_expectation(chef_run, 'replaced', 1, 'command', 'some-command')
     end
   end
 end

@@ -46,7 +46,20 @@ action_class do
   def custom_binding_paths
     schema = CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS
     key = CodenamePHP::Gui::Helper::GNOME::GSettings::KEY_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDINGS
-    shell_out("gsettings get #{schema} #{key}")[/\[([^\]]*)/, 1].delete("'").split(',') || []
+
+    shellout = shell_out("gsettings get #{schema} #{key}")[/\[([^\]]*)/, 1]
+    log "shell_out: #{shellout}"
+
+    deleted = shellout.delete("'")
+    log "deleted: #{deleted}"
+
+    split = deleted.split(',')
+    log "split: #{split}"
+
+    final = split || []
+    log "final: #{final}"
+
+    final
   end
 
   def build_binding_paths(binding_definitions)

@@ -18,6 +18,9 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - 'test/smoke/**/*.rb'
 
+Metrics/MethodLength:
+  Max: 20
+  
 Metrics/ModuleLength:
   Exclude:
     - 'Rakefile'
