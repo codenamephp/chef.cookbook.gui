@@ -20,4 +20,21 @@ describe 'codenamephp_gui_gnome_gsettings' do
       )
     end
   end
+
+  context 'Add with path attribute' do
+    recipe do
+      codenamephp_gui_gnome_gsettings 'Set value' do
+        schema 'my.schema'
+        path 'my.path'
+        key 'my-key'
+        value 'myValue'
+      end
+    end
+
+    it 'will execute the command' do
+      expect(chef_run).to run_execute('Set gsettings value').with(
+        command: 'gsettings set my.schema:my.path my-key myValue'
+      )
+    end
+  end
 end

@@ -12,4 +12,14 @@ control 'gnome-1.0' do
   describe package('gnome-core') do
     it { should be_installed }
   end
+
+  describe command('gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings') do
+    its('stdout') { should match(Regexp.new(['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/'])) }
+  end
+
+  describe command('gsettings list-recursively org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/') do
+    its('stdout') { should match(Regexp.new("org.gnome.settings-daemon.plugins.media-keys.custom-keybinding binding '<Primary><Alt>t'")) }
+    its('stdout') { should match(Regexp.new("org.gnome.settings-daemon.plugins.media-keys.custom-keybinding command 'gnome-terminal --maximize'")) }
+    its('stdout') { should match(Regexp.new("org.gnome.settings-daemon.plugins.media-keys.custom-keybinding name 'Terminal'")) }
+  end
 end

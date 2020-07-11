@@ -6,11 +6,12 @@ AllCops:
 
 Layout/EndOfLine:
   EnforcedStyle: lf
-  
+
 Layout/LineLength:
-  Max: 160
+  Max: 200
 
 Metrics/BlockLength:
+  Max: 40
   Exclude:
     - 'Rakefile'
     - '**/*.rake'
