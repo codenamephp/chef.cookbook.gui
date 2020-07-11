@@ -11,12 +11,13 @@ describe 'codenamephp_gui_gnome_gsettings' do
         schema 'my.schema'
         key 'my-key'
         value 'myValue'
+        users ['test']
       end
     end
 
     it 'will execute the command' do
       expect(chef_run).to run_execute('Set gsettings value').with(
-        command: 'gsettings set my.schema my-key myValue'
+        command: 'sudo -u test dbus-launch gsettings set my.schema my-key "myValue"'
       )
     end
   end
@@ -28,12 +29,13 @@ describe 'codenamephp_gui_gnome_gsettings' do
         path 'my.path'
         key 'my-key'
         value 'myValue'
+        users ['test']
       end
     end
 
     it 'will execute the command' do
       expect(chef_run).to run_execute('Set gsettings value').with(
-        command: 'gsettings set my.schema:my.path my-key myValue'
+        command: 'sudo -u test dbus-launch gsettings set my.schema:my.path my-key "myValue"'
       )
     end
   end
