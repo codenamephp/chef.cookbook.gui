@@ -25,4 +25,5 @@ jobs:
       - name: update changelog
         uses: patrickjahns/chlgr@v1
         with:
+          commit-msg-prefix: '[CHANGELOG]'
           release-version: ${{ steps.version.outputs.next-version }}
