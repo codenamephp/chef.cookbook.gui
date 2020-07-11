@@ -48,19 +48,29 @@ action_class do
     key = CodenamePHP::Gui::Helper::GNOME::GSettings::KEY_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDINGS
 
     shellout = shell_out("gsettings get #{schema} #{key}")
-    log "shell_out: #{shellout}"
+    log "shell_out: #{shellout}" do
+      level :warn
+    end
 
     regex = shellout[/\[([^\]]*)/, 1]
-    log "regex: #{regex}"
+    log "regex: #{regex}" do
+      level :warn
+    end
 
     deleted = regex.delete("'")
-    log "deleted: #{deleted}"
+    log "deleted: #{deleted}" do
+      level :warn
+    end
 
     split = deleted.split(',')
-    log "split: #{split}"
+    log "split: #{split}" do
+      level :warn
+    end
 
     final = split || []
-    log "final: #{final}"
+    log "final: #{final}" do
+      level :warn
+    end
 
     final
   end

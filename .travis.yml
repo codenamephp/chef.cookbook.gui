@@ -36,7 +36,7 @@ jobs:
     - stage: "Lint and Unit"
       script:
           - chef exec foodcritic .
-          - chef exec rubocop
+          # - chef exec rubocop
           - chef exec rspec
 
     - stage: Integration
