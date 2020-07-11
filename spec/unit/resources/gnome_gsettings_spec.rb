@@ -2,12 +2,12 @@
 
 require 'spec_helper'
 
-describe 'codenamephp_gui_genome_gsettings' do
-  step_into :codenamephp_gui_genome_gsettings
+describe 'codenamephp_gui_gnome_gsettings' do
+  step_into :codenamephp_gui_gnome_gsettings
 
   context 'Add with minimal attributes' do
     recipe do
-      codenamephp_gui_genome_gsettings 'Set value' do
+      codenamephp_gui_gnome_gsettings 'Set value' do
         schema 'my.schema'
         key 'my-key'
         value 'myValue'
