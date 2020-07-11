@@ -134,3 +134,23 @@ codenamephp_gui_gnome 'install gnome gui' do
   action :uninstall
 end
 ```
+### Gnome Gsettings
+Resource to set gsettings configurations. There are constants in `CodenamePHP::Gui::Helper::GNOME::GSettings` that can be used for known schemas and keys
+
+#### Actions
+- `:set`: Sets the configuration
+
+#### Properties
+- `schema`: The schema the configuration is located in, e.g. 'org.gnome.desktop.session'
+- `key`: The key within the schema to be set, e.g. 'idle-delay'
+- `value`: The value to set, e.g. '0'
+
+#### Examples
+```ruby
+# Minimal parameters
+codenamephp_gui_gnome_gsettings 'Set display idle delay' do
+  schema CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_DESKTOP_SESSION
+  key CodenamePHP::Gui::Helper::GNOME::GSettings::KEY_DESKTOP_SESSION_IDLE_DELAY
+  value '0'
+end
+```
