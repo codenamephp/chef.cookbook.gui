@@ -47,10 +47,13 @@ action_class do
     schema = CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS
     key = CodenamePHP::Gui::Helper::GNOME::GSettings::KEY_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDINGS
 
-    shellout = shell_out("gsettings get #{schema} #{key}")[/\[([^\]]*)/, 1]
+    shellout = shell_out("gsettings get #{schema} #{key}")
     log "shell_out: #{shellout}"
 
-    deleted = shellout.delete("'")
+    regex = shellout[/\[([^\]]*)/, 1]
+    log "regex: #{regex}"
+
+    deleted = regex.delete("'")
     log "deleted: #{deleted}"
 
     split = deleted.split(',')
