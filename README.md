@@ -171,6 +171,6 @@ and then adding the new shortcut and adds back all shortcuts. If a shortcut with
 ```ruby
 codenamephp_gui_gnome_keyboard_shortcut 'Terminal' do
   command 'gnome-terminal --maximize'
-  binding "#{CodenamePHP::Gui::Helper::GNOME::Keys::SUPER}#{CodenamePHP::Gui::Helper::GNOME::Keys::ALT}t"
+  binding "#{CodenamePHP::Gui::Helper::GNOME::GSettings::Keys::SUPER}#{CodenamePHP::Gui::Helper::GNOME::GSettings::Keys::ALT}t"
 end
 ```
