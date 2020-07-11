@@ -35,9 +35,10 @@ jobs:
   include:
     - stage: "Lint and Unit"
       script:
-          - chef exec foodcritic .
+        - skip
+          # - chef exec foodcritic .
           # - chef exec rubocop
-          - chef exec rspec
+          # - chef exec rspec
 
     - stage: Integration
       name: "Kitchen: Gnome"
