@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+include_recipe 'apt'
 codenamephp_gui_gnome 'install gnome'
 codenamephp_gui_gnome_gsettings 'Set display idle delay' do
   schema CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_DESKTOP_SESSION
