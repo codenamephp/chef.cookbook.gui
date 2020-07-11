@@ -154,3 +154,23 @@ codenamephp_gui_gnome_gsettings 'Set display idle delay' do
   value '0'
 end
 ```
+
+### Gnome Keyboard Shortcuts
+The `codenamephp_gui_gnome_keyboard_shortcuts` resource adds custom shortcuts for the gnome desktop. This is done by getting the custom shortcuts using gsettings
+and then adding the new shortcut and adds back all shortcuts. If a shortcut with the same name already exists it is replaced by the new one
+
+#### Actions
+- `set`: Sets a new or replaces an existing shortcut
+
+#### Properties
+- `shortcut_name`: The name of the shortcut to set, defaults to the resource name
+- `command`: The command the shortcut should execute
+- `binding`: The keys the shortcut consists of, also see the `CodenamePHP::Gui::Helper::GNOME::Keys::*` constants
+
+#### Examples
+```ruby
+codenamephp_gui_gnome_keyboard_shortcut 'Terminal' do
+  command 'gnome-terminal --maximize'
+  binding "#{CodenamePHP::Gui::Helper::GNOME::Keys::SUPER}#{CodenamePHP::Gui::Helper::GNOME::Keys::ALT}t"
+end
+```

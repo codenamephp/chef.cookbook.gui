@@ -9,5 +9,5 @@ end
 codenamephp_gui_gnome_keyboard_shortcut 'Add shortcut for terminal' do
   shortcut_name 'Terminal'
   command 'gnome-terminal --maximize'
-  binding '<Primary><Alt>t'
+  binding "#{CodenamePHP::Gui::Helper::GNOME::Keys::SUPER}#{CodenamePHP::Gui::Helper::GNOME::Keys::ALT}t"
 end

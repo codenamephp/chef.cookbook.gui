@@ -46,7 +46,7 @@ action_class do
   def custom_binding_paths
     schema = CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS
     key = CodenamePHP::Gui::Helper::GNOME::GSettings::KEY_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDINGS
-    shell_out("gsettings get #{schema} #{key}")[/\[([^\]]*)/, 1].delete("'").split(',') || []
+    shell_out("gsettings get #{schema} #{key}")[/\[([^\]]*)/, 1].delete("'").split(',') || Array.new
   end
 
   def build_binding_paths(binding_definitions)
