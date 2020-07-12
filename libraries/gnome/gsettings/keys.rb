@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CodenamePHP
   module Gui
     module Helper

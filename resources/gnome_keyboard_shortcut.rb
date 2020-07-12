@@ -5,27 +5,17 @@ property :command, String, required: true, description: 'The command the binding
 property :binding, String, required: true, description: 'The keybinding'
 property :users, Array, required: true, description: 'The users to set the shortcuts for as array of usernames'
 
-include CodenamePHP::Gui::Helper::Gnome
+include CodenamePHP::Gui::Helper::Gnome # rubocop:todo Style/MixinUsage
 
 action :set do
   new_resource.users.each do |user|
-    binding_definitions = custom_binding_paths(user).to_h do |path|
-      binding_definition = shell_out("sudo -u #{user} dbus-launch gsettings list-recursively #{GSettings::SCHEMA_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDING}:#{path}").stdout
+    binding_definitions = KeyboardShortcuts::BindingDefinition::Collection.new
 
-      name = binding_definition[/name '([^']+)/, 1]
-      [name, KeyboardShortcuts::BindingDefintion.new(
-        name,
-        binding_definition[/command '([^']+)/, 1],
-        binding_definition[/binding '([^']+)/, 1]
-        )]
+    custom_binding_paths(user).each do |path|
+      definition_string = shell_out("sudo -u #{user} dbus-launch gsettings list-recursively #{GSettings::SCHEMA_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDING}:#{path}").stdout
+      binding_definitions.set(KeyboardShortcuts::BindingDefinition::Factory.from_string(definition_string))
     end
-    binding_definitions = binding_definitions.reject { |name, binding_definition| name.nil? || binding_definition.empty? }
-
-    binding_definitions[new_resource.shortcut_name] = KeyboardShortcuts::BindingDefintion.new(
-      new_resource.shortcut_name,
-      new_resource.command,
-      new_resource.binding
-      )
+    binding_definitions.set(KeyboardShortcuts::BindingDefinition::Factory.from_new_resource(new_resource))
 
     codenamephp_gui_gnome_gsettings 'Set new custom bindings array' do
       schema GSettings::SCHEMA_PLUGINS_MEDIA_KEYS
@@ -53,8 +43,6 @@ action :set do
 end
 
 action_class do
-
-
   def custom_binding_paths(user)
     schema = GSettings::SCHEMA_PLUGINS_MEDIA_KEYS
     key = GSettings::KEY_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDINGS
