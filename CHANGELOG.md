@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.1.0](https://github.com/codenamephp/chef.cookbook.gui/tree/2.1.0) (2020-07-12)
+
+[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/2.0.0...2.1.0)
+
+**Implemented enhancements:**
+
+- Gsettings and Keyboard Shortcut resource [\#29](https://github.com/codenamephp/chef.cookbook.gui/pull/29) ([bastianschwarz](https://github.com/bastianschwarz))
+
 ## [2.0.0](https://github.com/codenamephp/chef.cookbook.gui/tree/2.0.0) (2020-06-22)
 
 [Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/v1.2.0...2.0.0)
