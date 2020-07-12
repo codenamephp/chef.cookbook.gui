@@ -65,3 +65,10 @@ jobs:
           - chef exec berks upload -e test **
         on:
           tags: true
+
+notifications:
+  slack:
+    on_success: never
+    on_failure: always
+    rooms:
+      - secure: "OjwN+L4t7njlRp6wSEYTE6QlzCGSswT7yPcwbfMcFADPI8xfhA4KLCvumAVGeAxndjJ0gf5YkDLzc+ORouz1s7516+ltRXlPris93dt2ICWOxg56S5O1Sihz0vgeQNlFAx+zZkz1NEJ6SVK/TB5JLZ4vGMrakWh7JIm9Tb/97Cw30XIOK2SLrJVGJnTgHlmNrU5mU1NS00eWqiz0uybprdG4yxQNAb1+mBOnt0BmDScixhZfusK+VflSuvhHDo7aCggkf4Vc96TX6gGsjRX2vHcLq1/iYN9X4F17kMyghrxEB6DqEjhqqrkXGMTUxVdE0aLTpS/2z2GgBJzkToSTecJwZob++SNyc//C1qsLhM+qm0GuUx3fCPyC93oL70dVEtGO2C9rzWJD35d2DcHiDhgxp8OEYIAEagOuFjOIIa/Y8E1TKGT5VMUvlsZlu+3yztY/Gmbe+ZFCgz7Y7Pjswb0+yTzQf+giGsTxuAQbsBzVLVqUxs+2dfLXRinAK/dBlBjIUYe8pByoUFDj0IdfGGQFaf2T5XiQV032Cs/GrC3+3KjhQl4tHPyyKPhfMU+BaXlkH958UsPWsVYEqwSlUs26OBjCsMqyZjadAu65ylOt/85SZ2cwJ4rmPEQa8+egHix41reB7GNhO6S5IYsIwvPk/wG/HA210Ae0csNrkhw="
