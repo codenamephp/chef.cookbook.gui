@@ -7,7 +7,7 @@ describe 'codenamephp_gui_gnome_keyboard_shortcut' do
 
   def settings_expectation(chef_run, name, index, key, value)
     expect(chef_run).to set_codenamephp_gui_gnome_gsettings("Set new custom binding #{key} for #{name}").with(
-      schema: CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDING,
+      schema: CodenamePHP::Gui::Helper::Gnome::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDING,
       path: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom#{index}/",
       key: key,
       value: value

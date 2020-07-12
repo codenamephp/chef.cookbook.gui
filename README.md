@@ -135,7 +135,7 @@ codenamephp_gui_gnome 'install gnome gui' do
 end
 ```
 ### Gnome Gsettings
-Resource to set gsettings configurations. There are constants in `CodenamePHP::Gui::Helper::GNOME::GSettings` that can be used for known schemas and keys
+Resource to set gsettings configurations. There are constants in `CodenamePHP::Gui::Helper::Gnome::GSettings` that can be used for known schemas and keys
 
 #### Actions
 - `:set`: Sets the configuration
@@ -149,8 +149,8 @@ Resource to set gsettings configurations. There are constants in `CodenamePHP::G
 ```ruby
 # Minimal parameters
 codenamephp_gui_gnome_gsettings 'Set display idle delay' do
-  schema CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_DESKTOP_SESSION
-  key CodenamePHP::Gui::Helper::GNOME::GSettings::KEY_DESKTOP_SESSION_IDLE_DELAY
+  schema CodenamePHP::Gui::Helper::Gnome::GSettings::SCHEMA_DESKTOP_SESSION
+  key CodenamePHP::Gui::Helper::Gnome::GSettings::KEY_DESKTOP_SESSION_IDLE_DELAY
   value '0'
 end
 ```
@@ -165,12 +165,12 @@ and then adding the new shortcut and adds back all shortcuts. If a shortcut with
 #### Properties
 - `shortcut_name`: The name of the shortcut to set, defaults to the resource name
 - `command`: The command the shortcut should execute
-- `binding`: The keys the shortcut consists of, also see the `CodenamePHP::Gui::Helper::GNOME::Keys::*` constants
+- `binding`: The keys the shortcut consists of, also see the `CodenamePHP::Gui::Helper::Gnome::Keys::*` constants
 
 #### Examples
 ```ruby
 codenamephp_gui_gnome_keyboard_shortcut 'Terminal' do
   command 'gnome-terminal --maximize'
-  binding "#{CodenamePHP::Gui::Helper::GNOME::GSettings::Keys::SUPER}#{CodenamePHP::Gui::Helper::GNOME::GSettings::Keys::ALT}t"
+  binding "#{CodenamePHP::Gui::Helper::Gnome::GSettings::Keys::SUPER}#{CodenamePHP::Gui::Helper::Gnome::GSettings::Keys::ALT}t"
 end
 ```

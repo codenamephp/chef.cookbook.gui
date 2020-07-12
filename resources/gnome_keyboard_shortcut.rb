@@ -8,7 +8,7 @@ property :users, Array, required: true, description: 'The users to set the short
 action :set do
   new_resource.users.each do |user|
     binding_definitions = custom_binding_paths(user).to_h do |path|
-      binding_definition = shell_out("sudo -u #{user} dbus-launch gsettings list-recursively #{CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDING}:#{path}").stdout
+      binding_definition = shell_out("sudo -u #{user} dbus-launch gsettings list-recursively #{CodenamePHP::Gui::Helper::Gnome::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDING}:#{path}").stdout
 
       name = binding_definition[/name '([^']+)/, 1]
       [name,
@@ -25,8 +25,8 @@ action :set do
     }
 
     codenamephp_gui_gnome_gsettings 'Set new custom bindings array' do
-      schema CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS
-      key CodenamePHP::Gui::Helper::GNOME::GSettings::KEY_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDINGS
+      schema CodenamePHP::Gui::Helper::Gnome::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS
+      key CodenamePHP::Gui::Helper::Gnome::GSettings::KEY_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDINGS
       value build_binding_paths(binding_definitions)
       users [user]
     end
@@ -38,7 +38,7 @@ action :set do
         command: binding_definition[:command]
       }.each do |key, value|
         codenamephp_gui_gnome_gsettings "Set new custom binding #{key} for #{name}" do
-          schema CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDING
+          schema CodenamePHP::Gui::Helper::Gnome::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDING
           path "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom#{index}/"
           key key.to_s
           value value
@@ -51,8 +51,8 @@ end
 
 action_class do
   def custom_binding_paths(user)
-    schema = CodenamePHP::Gui::Helper::GNOME::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS
-    key = CodenamePHP::Gui::Helper::GNOME::GSettings::KEY_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDINGS
+    schema = CodenamePHP::Gui::Helper::Gnome::GSettings::SCHEMA_PLUGINS_MEDIA_KEYS
+    key = CodenamePHP::Gui::Helper::Gnome::GSettings::KEY_PLUGINS_MEDIA_KEYS_CUSTOM_KEYBINDINGS
     paths = shell_out("sudo -u #{user} gsettings get #{schema} #{key}")&.stdout || ''
     paths[/\[([^\]]*)/, 1]&.delete("'")&.split(',')&.map(&:strip) || []
   end
