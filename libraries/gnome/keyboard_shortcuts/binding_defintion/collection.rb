@@ -38,8 +38,34 @@ module CodenamePHP
 
               # Sets a definition to the hash using its name as key. That means
               # that if a definition with that name already exists it will be replaced
+              #
+              # @returns [self] Fluent interface
               def set(definition)
                 @definitions[definition.name] = definition unless definition.empty?
+                self
+              end
+
+              # Builds the paths that is used for gsettings for the current bindings
+              #
+              # @return [Array] The paths as string array
+              #
+              # @example
+              # /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/
+              def paths
+                Array.new(size) do |index|
+                  "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom#{index}/"
+                end
+              end
+
+              # Builds the paths as string that resembles and array of paths by joining the result of self.paths with "','"
+              # and surrounding it with ['']
+              #
+              # @return [String] The paths as string resembling an array
+              #
+              # @example
+              # ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/','/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+              def paths_s
+                "['#{paths.join("','")}']"
               end
             end
           end

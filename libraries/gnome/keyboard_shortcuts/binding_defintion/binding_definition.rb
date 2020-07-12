@@ -42,6 +42,15 @@ module CodenamePHP
               def valid?
                 !@name.empty && !@command.empty? && !@binding.empty?
               end
+
+              # Executes the block for each property wehere the property name is the key and the property values is ... the value
+              def each(&block)
+                {
+                  name: @name,
+                  binding: @binding,
+                  command: @command
+                }.each(&block)
+              end
             end
           end
         end
