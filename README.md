@@ -144,6 +144,7 @@ Resource to set gsettings configurations. There are constants in `CodenamePHP::G
 - `schema`: The schema the configuration is located in, e.g. 'org.gnome.desktop.session'
 - `key`: The key within the schema to be set, e.g. 'idle-delay'
 - `value`: The value to set, e.g. '0'
+- `users`: The users to set the settings for as array of usernames
 
 #### Examples
 ```ruby
@@ -152,6 +153,7 @@ codenamephp_gui_gnome_gsettings 'Set display idle delay' do
   schema CodenamePHP::Gui::Helper::Gnome::GSettings::SCHEMA_DESKTOP_SESSION
   key CodenamePHP::Gui::Helper::Gnome::GSettings::KEY_DESKTOP_SESSION_IDLE_DELAY
   value '0'
+  users ['test']
 end
 ```
 
@@ -165,12 +167,14 @@ and then adding the new shortcut and adds back all shortcuts. If a shortcut with
 #### Properties
 - `shortcut_name`: The name of the shortcut to set, defaults to the resource name
 - `command`: The command the shortcut should execute
-- `binding`: The keys the shortcut consists of, also see the `CodenamePHP::Gui::Helper::Gnome::Keys::*` constants
+- `binding`: The keys the shortcut consists of, also see the `CodenamePHP::Gui::Helper::Gnome::GSettings::Keys::*` constants
+- `users`: The users to set the shortcuts for as array of usernames
 
 #### Examples
 ```ruby
 codenamephp_gui_gnome_keyboard_shortcut 'Terminal' do
   command 'gnome-terminal --maximize'
   binding "#{CodenamePHP::Gui::Helper::Gnome::GSettings::Keys::SUPER}#{CodenamePHP::Gui::Helper::Gnome::GSettings::Keys::ALT}t"
+  users ['test']
 end
 ```
