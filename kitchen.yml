@@ -29,6 +29,7 @@ suites:
   - name: gnome
     run_list:
       - recipe[codenamephp_gui::gnome]
+      - recipe[test::gnome]
     verifier:
       inspec_tests:
         - test/smoke/gnome
