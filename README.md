@@ -5,6 +5,9 @@ Cookbook to install linux guis like cinnamon, gnome, ...
 
 The default cookbook is a No-Op. To install a gui, add the respective cookbook to your runlist.
 
+## Deprecated
+This cookbook is now deprecated and won't be getting any updates. 
+
 ## Requirements
 
 ### Supported Platforms
