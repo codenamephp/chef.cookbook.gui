@@ -1,5 +1,18 @@
 # Change Log
 
+## [2.1.1](https://github.com/codenamephp/chef.cookbook.gui/tree/2.1.1) (2021-07-04)
+
+[Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/2.1.0...2.1.1)
+
+**Implemented enhancements:**
+
+- Clear F keys [\#22](https://github.com/codenamephp/chef.cookbook.gui/issues/22)
+- xfce: Make sure key ring is installed [\#18](https://github.com/codenamephp/chef.cookbook.gui/issues/18)
+
+**Fixed bugs:**
+
+- Change folder in launcher to ~ [\#11](https://github.com/codenamephp/chef.cookbook.gui/issues/11)
+
 ## [2.1.0](https://github.com/codenamephp/chef.cookbook.gui/tree/2.1.0) (2020-07-12)
 
 [Full Changelog](https://github.com/codenamephp/chef.cookbook.gui/compare/2.0.0...2.1.0)
